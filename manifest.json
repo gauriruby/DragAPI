@@ -1,0 +1,42 @@
+{
+    "manifest_version": 3,
+    "name": "Gmail to WhatsApp File Transfer",
+    "version": "1.1",
+    "description": "Drag and drop Gmail attachments to WhatsApp Web & Desktop without downloading.",
+    "permissions": ["scripting", "activeTab", "storage"],
+    "host_permissions": [
+      "https://mail.google.com/*",
+      "https://web.whatsapp.com/*",
+      "file://*/*"  
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://mail.google.com/*"],
+        "js": ["gmail-content.js"]
+      },
+      {
+        "matches": ["https://web.whatsapp.com/*"],
+        "js": ["whatsapp-content.js"]
+      },
+      {
+        "matches": ["file://*/*"],  
+        "js": ["whatsapp-desktop.js"] 
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+      }
+    },
+    "icons": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+}
